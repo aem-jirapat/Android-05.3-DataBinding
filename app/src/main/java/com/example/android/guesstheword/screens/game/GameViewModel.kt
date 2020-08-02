@@ -29,10 +29,11 @@ class GameViewModel : ViewModel() {
 
     // The current score
     private val _score = MutableLiveData<Int>()
+    val score: LiveData<Int>
+        get() = _score
 
-    val score = MutableLiveData<Int>()
-
-    val word = MutableLiveData<String>()
+    val word: LiveData<String>
+        get() = _word
 
 
 
@@ -76,8 +77,8 @@ class GameViewModel : ViewModel() {
     }
 
     init {
-        word.value = ""
-        score.value = 0
+        _word.value = ""
+        _score.value = 0
         Log.i("GameViewModel", "GameViewModel created!")
         resetList()
         nextWord()
@@ -93,11 +94,11 @@ class GameViewModel : ViewModel() {
 
     /** Methods for updating the UI **/
     fun onSkip() {
-        score.value = (score.value)?.minus(1)
+        _score.value = (_score.value)?.minus(1)
         nextWord()
     }
     fun onCorrect() {
-        score.value = (score.value)?.plus(1)
+        _score.value = (_score.value)?.plus(1)
         nextWord()
     }
 
@@ -105,12 +106,12 @@ class GameViewModel : ViewModel() {
      * Moves to the next _word in the list.
      */
     private fun nextWord() {
-        if (!wordList.isEmpty()) {
+        if (wordList.isEmpty()) {
             onGameFinish()
 
         } else {
             //Select and remove a _word from the list
-            word.value = wordList.removeAt(0)
+            _word.value = wordList.removeAt(0)
         }
     }
 
