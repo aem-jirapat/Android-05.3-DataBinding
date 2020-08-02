@@ -29,11 +29,10 @@ class GameViewModel : ViewModel() {
 
     // The current score
     private val _score = MutableLiveData<Int>()
-    val score: LiveData<Int>
-        get() = _score
 
-    val word: LiveData<String>
-        get() = _word
+    val score = MutableLiveData<Int>()
+
+    val word = MutableLiveData<String>()
 
 
 
@@ -77,8 +76,8 @@ class GameViewModel : ViewModel() {
     }
 
     init {
-        _word.value = ""
-        _score.value = 0
+        word.value = ""
+        score.value = 0
         Log.i("GameViewModel", "GameViewModel created!")
         resetList()
         nextWord()
