@@ -93,11 +93,11 @@ class GameViewModel : ViewModel() {
 
     /** Methods for updating the UI **/
     fun onSkip() {
-        _score.value = (_score.value)?.minus(1)
+        score.value = (score.value)?.minus(1)
         nextWord()
     }
     fun onCorrect() {
-        _score.value = (_score.value)?.plus(1)
+        score.value = (score.value)?.plus(1)
         nextWord()
     }
 
@@ -105,12 +105,12 @@ class GameViewModel : ViewModel() {
      * Moves to the next _word in the list.
      */
     private fun nextWord() {
-        if (wordList.isEmpty()) {
+        if (!wordList.isEmpty()) {
             onGameFinish()
 
         } else {
             //Select and remove a _word from the list
-            _word.value = wordList.removeAt(0)
+            word.value = wordList.removeAt(0)
         }
     }
 
